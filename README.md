@@ -1,3 +1,19 @@
+This repository contains scan matching code with scripts that can be used to match scans in the original COLD-Stockholm format.
+
+To use:
+
+1) Place `laser_scans.dat` in the main folder of this repo
+1) Run `run.sh`
+1) The generated odometry will be found in `odometry.dat`
+
+
+
+Original README BELOW
+---------------------
+
+
+
+
 For more information about the C(anonical) Scan Matcher, see the webpage: http://purl.org/censi/2007/csm .
 
 This is the "master" branch of CSM, which uses GSL.
