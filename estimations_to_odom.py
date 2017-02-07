@@ -2,13 +2,16 @@
 
 import json
 import math
+import sys
 
-with open("laser_scans_matched.json") as f:
-    lines = f.readlines()
+if len(sys.argv) != 2:
+    print("Usage: our_to_carmen.py <output_odom_file>")
+    sys.exit(1)
+
 
 output = []
-with open("odometry.dat", 'w') as f:
-    for l in lines:
+with open(sys.argv[1], 'w') as f:
+    for l in sys.stdin:
         jsn = json.loads(l)
         estimate = jsn['estimate']
         tstamp = jsn['timestamp']

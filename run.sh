@@ -1,17 +1,16 @@
 #!/bin/sh
 
+if [ $# != 2 ]
+then
+    echo "Usage: ./run.sh <input_scans> <output_odometry>"
+    exit 1
+fi
 
 # Convert laser_scans.dat to carmen format
-./our_to_carmen.py
-
 # Convert carmen format to json
-./sm/carmen2json < ./laser_scans.carmen > laser_scans.json
-
 # Do scan matching
-./sm/sm2 < ./laser_scans.json > laser_scans_matched.json
+# Generate odometry
+./our_to_carmen.py $1 | ./sm/carmen2json | ./sm/sm2 | ./estimations_to_odom.py $2
 
 # Draw a pdf
-./sm/log2pdf -in laser_scans_matched.json
-
-# Generate odometry
-./matched_to_odom.py
+#./sm/log2pdf -in laser_scans_matched.json
